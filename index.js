@@ -79,7 +79,7 @@ async function run() {
         scholarship,
       });
     });
-    
+
     // search  role get api
     app.get("/user/role/:email", verifyToken, async (req, res) => {
       const email = req.params.email;
@@ -130,11 +130,13 @@ async function run() {
         .toArray();
       res.send(result);
     });
+
     // scholarships get api
     app.get("/scholarships", async (req, res) => {
       const result = await scholarshipsCollection.find().toArray();
       res.send(result);
     });
+    
     // scholarship by search
     app.get("/scholarship", async (req, res) => {
       const { search, page = 1, limit = 6 } = req.query;
