@@ -66,7 +66,7 @@ async function run() {
       });
       res.send({ token });
     });
-    
+
     app.get("/admin-stats", async (req, res) => {
       const user = await usersCollection.estimatedDocumentCount();
       const application = await applicationsCollection.estimatedDocumentCount();
@@ -79,6 +79,7 @@ async function run() {
         scholarship,
       });
     });
+    
     // search  role get api
     app.get("/user/role/:email", verifyToken, async (req, res) => {
       const email = req.params.email;
