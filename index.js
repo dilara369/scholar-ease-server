@@ -136,7 +136,7 @@ async function run() {
       const result = await scholarshipsCollection.find().toArray();
       res.send(result);
     });
-    
+
     // scholarship by search
     app.get("/scholarship", async (req, res) => {
       const { search, page = 1, limit = 6 } = req.query;
@@ -180,11 +180,13 @@ async function run() {
       res.send({ result, totalitems });
     });
 
+
     // all users get api
     app.get("/users", verifyToken, async (req, res) => {
       const result = await usersCollection.find().toArray();
       res.send(result);
     });
+    
     // get single user api
     app.get("/user/:email", async (req, res) => {
       const email = req.params.email;
