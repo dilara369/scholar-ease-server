@@ -57,6 +57,7 @@ async function run() {
     const reviewsCollection = scholarEase.collection("reviews");
     const usersCollection = scholarEase.collection("users");
 
+    
     // auth related api
     app.post("/jwt", async (req, res) => {
       const user = req.body;
@@ -457,7 +458,7 @@ async function run() {
       const result = await applicationsCollection.updateOne(query, updateUser);
       res.send(result);
     });
-    
+
     // user delete api
     app.delete("/user/:id", verifyToken, async (req, res) => {
       const id = req.params.id;
