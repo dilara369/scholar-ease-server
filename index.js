@@ -57,7 +57,7 @@ async function run() {
     const reviewsCollection = scholarEase.collection("reviews");
     const usersCollection = scholarEase.collection("users");
 
-    
+
     // auth related api
     app.post("/jwt", async (req, res) => {
       const user = req.body;
@@ -66,6 +66,7 @@ async function run() {
       });
       res.send({ token });
     });
+    
     app.get("/admin-stats", async (req, res) => {
       const user = await usersCollection.estimatedDocumentCount();
       const application = await applicationsCollection.estimatedDocumentCount();
