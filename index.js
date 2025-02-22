@@ -326,6 +326,7 @@ async function run() {
       res.send(result);
     });
     // payment related post api
+
     app.post("/create-payment-intent", async (req, res) => {
       const { price } = req.body;
       const amount = parseInt(price * 100);
@@ -357,6 +358,7 @@ async function run() {
       res.send(result);
     });
     // review add post api
+    
     app.post("/review", async (req, res) => {
       const review = req.body;
       const query = { applicationId: review.applicationId };
