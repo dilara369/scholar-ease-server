@@ -358,7 +358,7 @@ async function run() {
       res.send(result);
     });
     // review add post api
-    
+
     app.post("/review", async (req, res) => {
       const review = req.body;
       const query = { applicationId: review.applicationId };
@@ -426,6 +426,7 @@ async function run() {
       const result = await usersCollection.updateOne(query, updateUser);
       res.send(result);
     });
+    
     // update review patch api
     app.patch("/review", verifyToken, async (req, res) => {
       const { rating, comment, id } = req.body;
