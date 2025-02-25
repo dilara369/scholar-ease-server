@@ -7,7 +7,13 @@ const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const app = express();
 const port = process.env.PORT || 4000;
 
-app.use(cors());
+app.use(cors({
+  origin: "https://scholership000.netlify.app", 
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true 
+}));
+
+
 app.use(express.json());
 // middlware
 const verifyToken = (req, res, next) => {
