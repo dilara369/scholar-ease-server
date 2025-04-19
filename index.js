@@ -8,22 +8,23 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 app.use(cors({
-  origin: "https://scholership000.netlify.app", 
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true 
+  origin: ["http://localhost:5173", "https://scholership000.netlify.app"], // Remove trailing slash
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Add OPTIONS
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
 }));
 
 
 app.use(express.json());
 // middlware
 const verifyToken = (req, res, next) => {
-  if (!req.headers.authorizetion) {
-    return res.status(401).send({ massage: "unauthorized access" });
+  if (!req.headers?.authorization) {
+    return res.status(401).send({ massage: "unauthorized access 1" });
   }
-  const token = req.headers.authorizetion.split(" ")[1];
+  const token = req.headers?.authorization?.split(" ")[1];
   jwt.verify(token, process.env.ACCESS_SECRET_TOKEN, (error, decoded) => {
     if (error) {
-      return res.status(401).send({ massage: "unauthorized access" });
+      return res.status(401).send({ massage: error });
     }
     req.decoded = decoded;
 
