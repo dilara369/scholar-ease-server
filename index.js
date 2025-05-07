@@ -13,7 +13,7 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
 }));
-
+//  app.use(cors());
 
 app.use(express.json());
 // middlware
@@ -112,6 +112,7 @@ async function run() {
       res.send({ role });
     });
     app.get("/featuredScholarship", async (req, res) => {
+      console.log("hello")
       const result = await scholarshipsCollection
         .aggregate([
           {
@@ -502,6 +503,9 @@ async function run() {
       const result = await reviewsCollection.deleteOne(query);
       res.send(result);
     });
+    app.get("/",(req,res)=>{
+     res.send("got it")
+    })
     // Send a ping to confirm a successful connection
     // await client.db("admin").command({ ping: 1 });
     // console.log(
